@@ -1,18 +1,19 @@
 const mongoose = require("mongoose");
 
-async function connectDb() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
+function connectDb() {
+  const mongoURL = `mongodb://${process.env.MONGODB_URL}?authSource=${process.env.MONGODB_AUTHSOURCE}`
+
+    mongoose.connect(mongoURL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
       useFindAndModify: false,
-    });
+    }).then(() => console.log('Connected Database'),
+    (err) => {
+      throw err;
+    },);
     console.log("Mongodb connected");
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+
 }
 
 module.exports = connectDb;

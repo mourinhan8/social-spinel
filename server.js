@@ -7,8 +7,8 @@ const next = require("next");
 const dev = process.env.NODE_ENV !== "production";
 const nextApp = next({ dev });
 const handle = nextApp.getRequestHandler();
-require("dotenv").config({ path: "./config.env" });
-const connectDb = require("./utilsServer/connectDb");
+const mongoose = require("mongoose");
+require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 const io = require("socket.io")(server);
 const {
@@ -23,7 +23,18 @@ const {
   getUserInfo,
 } = require("./utils/messageActions");
 
-connectDb();
+const mongoURL = `mongodb://${process.env.MONGODB_URL}?authSource=${process.env.MONGODB_AUTHSOURCE}`
+console.log(mongoURL)
+
+    mongoose.connect(mongoURL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false,
+    }).then(() => console.log('Connected Database'),
+    (err) => {
+      throw err;
+    },);
 const corsOpts = {
   origin: '*',
 
