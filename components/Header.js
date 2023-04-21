@@ -46,7 +46,7 @@ function Header({ user }) {
               fontSize: "1.8rem",
             }}
           >
-            fae
+            SPL
           </p>
         </div>
 

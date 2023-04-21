@@ -70,11 +70,8 @@ function Login() {
         >
           Log In
         </h1>
-        <Heading fontSize={"2.6rem"} fontWeight={"600"}>
-          FaeShare
-        </Heading>
         <Subheading fontSize={"1.48rem"}>
-          Get your fair share of attention.
+          Get in social work
         </Subheading>
         <LoginBox className="h-[29.25rem] w-[29.5rem]  lg:w-[30.5rem]">
           <Input
